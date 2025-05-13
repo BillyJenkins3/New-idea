@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Plan Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; background: #f4f4f4; }
+    h1 { text-align: center; }
+    ul { list-style: none; padding: 0; }
+    li { background: #fff; margin: 10px 0; padding: 10px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <h1>My Reading Plan</h1>
+  <ul id="reading-plan">
+    <li><input type="checkbox" onchange="saveProgress(0)"> Genesis 1</li>
+    <li><input type="checkbox" onchange="saveProgress(1)"> Genesis 2</li>
+    <li><input type="checkbox" onchange="saveProgress(2)"> Genesis 3</li>
+    <li><input type="checkbox" onchange="saveProgress(3)"> Genesis 4</li>
+    <li><input type="checkbox" onchange="saveProgress(4)"> Genesis 5</li>
+  </ul>
+
+  <a href="index.html" class="back-home">Back to Home</a>
+
+  <script>
+    const checkboxes = document.querySelectorAll("#reading-plan input[type='checkbox']");
+    checkboxes.forEach((cb, i) => cb.checked = localStorage.getItem(`reading-day-${i}`) === 'true');
+    function saveProgress(i) {
+      localStorage.setItem(`reading-day-${i}`, checkboxes[i].checked);
+    }
+  </script>
+</body>
+</html>
